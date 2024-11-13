@@ -6,12 +6,10 @@ pipeline {
         maven "MyMaven"
     }
 
-    parameter {
-        
-    }
+
     stages {
         stage('Compile') {
-            agent {label: 'Slave1'}
+            agent {label 'Slave1'}
             steps {
                 echo "Compile the code"
                 sh 'mvn compile'
@@ -19,7 +17,7 @@ pipeline {
 
         }
                 stage('UnitTest') {
-            agent{label: 'Slave2'}
+            agent{label 'Slave2'}
             steps {
                 echo "Compile the code"
                 sh 'mvn test'
@@ -27,7 +25,7 @@ pipeline {
 
         }
                 stage('Package') {
-            agent{label: 'Slave3'}
+            agent{label 'Slave3'}
             steps {
                 echo "Compile the code"
                 sh 'mvn package'
