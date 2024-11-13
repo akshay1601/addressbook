@@ -24,7 +24,7 @@ pipeline {
             }
 
         }
-                stage('UnitTest') {
+        stage('UnitTest') {
             agent{label 'Slave2'}
             when {
                 expression {
@@ -37,7 +37,7 @@ pipeline {
             }
 
         }
-                stage('Package') {
+        stage('Package') {
             agent{label 'Slave3'}
             steps {
                 echo "Compile the code ${params.Env}"
@@ -45,5 +45,17 @@ pipeline {
             }
 
         }
+        stage('Deploy') {
+            input {
+                message "Select the Version?"
+                ok "Version Selected"
+                parameters {
+                    choice(name: 'PLATFORM', choices: ['EKS', 'ONPREM_EKS', 'ON_SERVER'], description: 'Pick something')
+                }
+            }
+            steps{
+                echo "Deploy the Code ${params.Env}"
+            }
+        }        
     }
 }
