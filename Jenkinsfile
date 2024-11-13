@@ -27,7 +27,7 @@ pipeline {
                 stage('UnitTest') {
             agent{label 'Slave2'}
             when {
-                expresion {
+                expression {
                     params.executeTests == true
                 }
             }
