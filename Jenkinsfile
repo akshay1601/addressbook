@@ -26,8 +26,8 @@ pipeline {
             steps {
                 script{
                     sshagent (credentials: ['Slave1']) {
-                        sh "scp -o StrictHostKeyChecking=no server1-comfig.sh ${Server1}:/home/ubuntu"
-                        sh "ssh -o StrictHostKeyChecking=no ${Server1} 'bash ~/server1-comfig.sh'"
+                        sh "scp -o StrictHostKeyChecking=no server1-config.sh ${Server1}:/home/ubuntu"
+                        sh "ssh -o StrictHostKeyChecking=no ${Server1} 'bash ~/server1-config.sh'"
                      }
                 }
             }
@@ -43,8 +43,8 @@ pipeline {
             steps {
                 script{
                     sshagent (credentials: ['Slave2']) {
-                        sh "scp -o StrictHostKeyChecking=no server2-comfig.sh ${Server2}:/home/ubuntu"
-                        sh "ssh -o StrictHostKeyChecking=no ${Server2} 'bash ~/server2-comfig.sh'"
+                        sh "scp -o StrictHostKeyChecking=no server2-config.sh ${Server2}:/home/ubuntu"
+                        sh "ssh -o StrictHostKeyChecking=no ${Server2} 'bash ~/server2-config.sh'"
                      }
                 }
             }
