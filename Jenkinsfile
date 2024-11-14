@@ -15,7 +15,7 @@ pipeline {
     }
 
     environment {
-        Server = ubuntu@3.83.153.6
+        Server = 'ubuntu@3.83.153.6'
     }
 
     stages {
