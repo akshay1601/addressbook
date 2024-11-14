@@ -14,34 +14,40 @@ pipeline {
 
     }
 
+    environment {
+        Server = ubuntu@3.83.153.6
+    }
 
     stages {
-        stage('Compile') {
-            agent {label 'Slave1'}
-            steps {
-                echo "Compile the code ${params.Env}"
-                sh 'mvn compile'
-            }
+        // stage('Compile') {
+        //     agent {label 'Slave1'}
+        //     steps {
+        //         echo "Compile the code ${params.Env}"
+        //         sh 'mvn compile'
+        //     }
 
-        }
-        stage('UnitTest') {
-            agent{label 'Slave2'}
-            when {
-                expression {
-                    params.executeTests == true
-                }
-            }
-            steps {
-                echo "Compile the code"
-                sh 'mvn test'
-            }
+        // }
+        // stage('UnitTest') {
+        //     agent{label 'Slave2'}
+        //     when {
+        //         expression {
+        //             params.executeTests == true
+        //         }
+        //     }
+        //     steps {
+        //         echo "Compile the code"
+        //         sh 'mvn test'
+        //     }
 
-        }
+        // }
         stage('Package') {
-            agent{label 'Slave3'}
+            agent any
             steps {
-                echo "Compile the code ${params.Env}"
-                sh 'mvn package'
+                script{
+                    sshagent (credentials: ['deploy-dev']) {
+                        sh 'ssh -o StrictHostKeyChecking=no -l ${server} uname -a'
+                     }
+                }
             }
 
         }
