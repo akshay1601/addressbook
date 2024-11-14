@@ -8,13 +8,13 @@ else
     sudo tar xf apache-maven-3.9.9-bin.tar.gz -C /opt
 
 
-if [-d "addressbook"]
-then 
-    echo "Repo is present"
-    cd /home/ubuntu/addressbook
-    git pull origin main
-else
-    git clone https://github.com/akshay1601/addressbook.git
-    cd addressbook
+# if [-d "addressbook"]
+# then 
+#     echo "Repo is present"
+#     cd /home/ubuntu/addressbook
+#     git pull origin main
+# else
+#     git clone https://github.com/akshay1601/addressbook.git
+#     cd addressbook
 
-/opt/apache-maven-3.9.9/bin/mvn  package
+# /opt/apache-maven-3.9.9/bin/mvn  package
