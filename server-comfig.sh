@@ -12,5 +12,5 @@
 
 cd /home/ubuntu
 git checkout https://github.com/akshay1601/addressbook.git
-cd addressbook
+cd /home/ubuntu/addressbook
 mvn package
