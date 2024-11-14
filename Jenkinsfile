@@ -15,38 +15,48 @@ pipeline {
     }
 
     environment {
-        Server = 'ubuntu@3.84.119.88'
+        Server1 = 'ubuntu@3.84.119.88'
+        Server2 = 'ubuntu@3.88.164.230'
+        Server3 = 'ubuntu@3.95.182.107'
     }
 
     stages {
-        // stage('Compile') {
-        //     agent {label 'Slave1'}
-        //     steps {
-        //         echo "Compile the code ${params.Env}"
-        //         sh 'mvn compile'
-        //     }
-
-        // }
-        // stage('UnitTest') {
-        //     agent{label 'Slave2'}
-        //     when {
-        //         expression {
-        //             params.executeTests == true
-        //         }
-        //     }
-        //     steps {
-        //         echo "Compile the code"
-        //         sh 'mvn test'
-        //     }
-
-        // }
-        stage('Package') {
+        stage('Compile') {
             agent any
             steps {
                 script{
                     sshagent (credentials: ['Slave1']) {
-                        sh "scp -o StrictHostKeyChecking=no server-comfig.sh ${Server}:/home/ubuntu"
-                        sh "ssh -o StrictHostKeyChecking=no ${Server} 'bash ~/server-comfig.sh'"
+                        sh "scp -o StrictHostKeyChecking=no server1-comfig.sh ${Server1}:/home/ubuntu"
+                        sh "ssh -o StrictHostKeyChecking=no ${Server1} 'bash ~/server1-comfig.sh'"
+                     }
+                }
+            }
+
+        }
+        stage('UnitTest') {
+            agent any
+            when {
+                expression {
+                    params.executeTests == true
+                }
+            }
+            steps {
+                script{
+                    sshagent (credentials: ['Slave2']) {
+                        sh "scp -o StrictHostKeyChecking=no server2-comfig.sh ${Server2}:/home/ubuntu"
+                        sh "ssh -o StrictHostKeyChecking=no ${Server2} 'bash ~/server2-comfig.sh'"
+                     }
+                }
+            }
+
+        }
+        stage('Package') {
+            agent any
+            steps {
+                script{
+                    sshagent (credentials: ['Slave3']) {
+                        sh "scp -o StrictHostKeyChecking=no server3-config.sh ${Server3}:/home/ubuntu"
+                        sh "ssh -o StrictHostKeyChecking=no ${Server3} 'bash ~/server3-config.sh'"
                      }
                 }
             }
