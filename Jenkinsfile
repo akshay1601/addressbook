@@ -46,8 +46,11 @@ pipeline {
                 script{
                     sshagent (credentials: ['Slave1']) {
                         sh "ssh -o StrictHostKeyChecking=no ${server}"
-                        sh "uname -a"
-                        sh "date"
+                        sh "sudo apt-get install maven -y"
+                        sh "cd /home/ubuntu"
+                        sh "git clone https://github.com/akshay1601/addressbook.git"
+                        sh "cd addressbook"
+                        sh "mvn package"
                      }
                 }
             }
