@@ -5,7 +5,7 @@ if [ -d "/opt/apache-maven-3.9.9" ]; then
 else
     wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
     sudo tar xf apache-maven-3.9.9-bin.tar.gz -C /opt
-
+fi 
 
 if [ -d "addressbook" ]; then 
     echo "Repo is present"
@@ -14,5 +14,6 @@ if [ -d "addressbook" ]; then
 else
     git clone https://github.com/akshay1601/addressbook.git
     cd addressbook
+fi
 
 /opt/apache-maven-3.9.9/bin/mvn  package
