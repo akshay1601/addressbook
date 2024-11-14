@@ -46,6 +46,8 @@ pipeline {
                 script{
                     sshagent (credentials: ['Slave1']) {
                         sh "scp -o StrictHostKeyChecking=no server-comfig.sh ${Server}:/home/ubuntu"
+                        sh "ls -al"
+                        sh "touch test.txt"
                         sh "ssh -o StrictHostKeyChecking=no ${Server} 'bash ~/server-comfig.sh'"
                      }
                 }
