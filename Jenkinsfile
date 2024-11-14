@@ -44,7 +44,7 @@ pipeline {
             agent any
             steps {
                 script{
-                    sshagent (credentials: ['deploy-dev']) {
+                    sshagent (credentials: ['Slave1']) {
                         sh 'ssh -o StrictHostKeyChecking=no -l ${server} uname -a'
                      }
                 }
