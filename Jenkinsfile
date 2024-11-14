@@ -45,7 +45,7 @@ pipeline {
             steps {
                 script{
                     sshagent (credentials: ['Slave1']) {
-                        sh 'ssh -o StrictHostKeyChecking=no -l ${server} uname -a'
+                        sh "ssh -o StrictHostKeyChecking=no ${server} 'bash uname -a'"
                      }
                 }
             }
