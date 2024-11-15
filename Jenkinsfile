@@ -1,10 +1,10 @@
 pipeline {
     agent none
 
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "MyMaven"
-    }
+    // tools {
+    //     // Install the Maven version configured as "M3" and add it to the path.
+    //     maven "MyMaven"
+    // }
     parameters {
         string(name: 'Env', defaultValue: 'Test', description: 'Version to deploy')
 
@@ -15,9 +15,9 @@ pipeline {
     }
 
     environment {
-        Server1 = 'ubuntu@3.84.119.88'
-        Server2 = 'ubuntu@3.88.164.230'
-        Server3 = 'ubuntu@3.95.182.107'
+        Server1 = 'ubuntu@54.173.146.83'
+        Server2 = 'ubuntu@100.24.2.1'
+        Server3 = 'ubuntu@100.24.2.1'
     }
 
     stages {
@@ -25,7 +25,7 @@ pipeline {
             agent any
             steps {
                 script{
-                    sshagent (credentials: ['Slave1']) {
+                    sshagent (credentials: ['Slave']) {
                         sh "scp -o StrictHostKeyChecking=no server1-config.sh ${Server1}:/home/ubuntu"
                         sh "ssh -o StrictHostKeyChecking=no ${Server1} 'bash ~/server1-config.sh'"
                      }
@@ -42,7 +42,7 @@ pipeline {
             }
             steps {
                 script{
-                    sshagent (credentials: ['Slave2']) {
+                    sshagent (credentials: ['Slave']) {
                         sh "scp -o StrictHostKeyChecking=no server2-config.sh ${Server2}:/home/ubuntu"
                         sh "ssh -o StrictHostKeyChecking=no ${Server2} 'bash ~/server2-config.sh'"
                      }
@@ -54,7 +54,7 @@ pipeline {
             agent any
             steps {
                 script{
-                    sshagent (credentials: ['Slave3']) {
+                    sshagent (credentials: ['Slave']) {
                         sh "scp -o StrictHostKeyChecking=no server3-config.sh ${Server3}:/home/ubuntu"
                         sh "ssh -o StrictHostKeyChecking=no ${Server3} 'bash ~/server3-config.sh'"
                      }
