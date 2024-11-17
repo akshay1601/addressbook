@@ -50,18 +50,18 @@ pipeline {
             }
 
         }
-        stage('Package') {
-            agent any
-            steps {
-                script{
-                    sshagent (credentials: ['Slave']) {
-                        sh "scp -o StrictHostKeyChecking=no server3-config.sh ${Server3}:/home/ubuntu"
-                        sh "ssh -o StrictHostKeyChecking=no ${Server3} 'bash ~/server3-config.sh'"
-                     }
-                }
-            }
+        // stage('Package') {
+        //     agent any
+        //     steps {
+        //         script{
+        //             sshagent (credentials: ['Slave']) {
+        //                 sh "scp -o StrictHostKeyChecking=no server3-config.sh ${Server3}:/home/ubuntu"
+        //                 sh "ssh -o StrictHostKeyChecking=no ${Server3} 'bash ~/server3-config.sh'"
+        //              }
+        //         }
+        //     }
 
-        }
+        // }
         stage('Deploy') {
             agent any
             input {
