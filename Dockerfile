@@ -23,7 +23,7 @@
 
 FROM hackyo/maven:3.9-jdk-17  AS build-stage
 WORKDIR /app
-RUN mvn dependency:go-offline
+# RUN mvn dependency:go-offline
 COPY ./src  ./src
 COPY ./pom.xml ./pom.xml
 RUN mvn package
