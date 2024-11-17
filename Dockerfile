@@ -28,7 +28,7 @@ COPY ./src  ./src
 COPY ./pom.xml ./pom.xml
 RUN mvn package
 
-FROM maven:3.8.4-openjdk-17-slim
+FROM tomcat:8.5.78-jdk17-openjdk-slim
 COPY --from=build-stage  /app/target/*.war  /usr/local/tomcat/webapps/
 EXPOSE 8080
 CMD ["catalina.sh","run"]
