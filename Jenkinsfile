@@ -72,6 +72,13 @@ pipeline {
             }
             steps{
                 echo "Deploy the Code ${params.Env}"
+                script{
+                    sshagent (credentials: ['Slave']) {
+                        sh "scp -o StrictHostKeyChecking=no server3-config.sh ${Server3}:/home/ubuntu"
+                        sh "ssh -o StrictHostKeyChecking=no ${Server3} 'bash ~/server3-config.sh'"
+                     }
+                }
+
             }
         }        
     }
