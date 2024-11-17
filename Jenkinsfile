@@ -15,9 +15,9 @@ pipeline {
     }
 
     environment {
-        Server1 = 'ubuntu@54.173.146.83'
-        Server2 = 'ubuntu@100.24.2.1'
-        Server3 = 'ubuntu@100.24.2.1'
+        Server1 = 'ubuntu@3.83.126.180'
+        Server2 = 'ubuntu@54.159.233.168'
+        Server3 = 'ubuntu@54.159.233.168'
     }
 
     stages {
