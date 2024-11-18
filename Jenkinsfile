@@ -15,9 +15,10 @@ pipeline {
     }
 
     environment {
-        Server1 = 'ubuntu@54.84.14.96'
-        Server2 = 'ubuntu@34.238.49.223'
-        Server3 = 'ubuntu@34.238.49.223'
+        Server1 = 'ubuntu@44.204.29.248'
+        Server2 = 'ubuntu@54.87.249.54'
+        Server3 = 'ubuntu@3.83.87.103'
+        IMAGE_NAME = "akshayv1601/java_project"
     }
 
     stages {
@@ -75,11 +76,15 @@ pipeline {
                 echo "Deploy the Code ${params.Env}"
                 script{
                     sshagent (credentials: ['Slave']) {
+                        withCredentials([usernamePassword(credentialsId: 'Docker-hub', passwordVariable: 'password', usernameVariable: 'username')]) {
                         sh "scp -o StrictHostKeyChecking=no server3-config.sh ${Server3}:/home/ubuntu"
-                        sh "ssh -o StrictHostKeyChecking=no ${Server3} 'bash ~/server3-config.sh'"
-                     }
+                        sh "ssh -o StrictHostKeyChecking=no ${Server3} 'bash ~/server3-config.sh ${IMAGE_NAME} ${BUILD_NUMBER}'"
+                        sh "ssh ${Server3} sudo docker login -u ${username} -p ${password}"
+                        sh "ssh ${Server3} sudo docker push ${IMAGE_NAME}:${BUILD_NUMBER}"
+                        
+                         }
+                    }
                 }
-
             }
         }        
     }
