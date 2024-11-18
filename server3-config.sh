@@ -19,4 +19,5 @@ fi
 # /opt/apache-maven-3.9.9/bin/mvn  package
 cd  /home/ubuntu/addressbook
 docker build -t $1:$2 .
-docker run -itd -P $1:$2
+docker rm -f moneyuncle
+docker run -itd --name moneyuncle -p 8080:8080 $1:$2
