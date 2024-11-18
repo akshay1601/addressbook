@@ -79,7 +79,7 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: 'Docker-hub', passwordVariable: 'password', usernameVariable: 'username')]) {
                         sh "scp -o StrictHostKeyChecking=no server3-config.sh ${Server3}:/home/ubuntu"
                         sh "ssh -o StrictHostKeyChecking=no ${Server3} 'bash ~/server3-config.sh ${IMAGE_NAME} ${BUILD_NUMBER}'"
-                        sh "ssh ${Server3} sudo docker login -u $username -p $password https://registry-1.docker.io/v2/"
+                        sh "ssh ${Server3} sudo docker login docker.io -u $username -p $password"
                         sh "ssh ${Server3} sudo docker push ${IMAGE_NAME}:${BUILD_NUMBER}"
                         
                         }
