@@ -15,9 +15,9 @@ pipeline {
     }
 
     environment {
-        Server1 = 'ubuntu@44.204.29.248'
-        Server2 = 'ubuntu@54.87.249.54'
-        Server3 = 'ubuntu@3.83.87.103'
+        Server1 = 'ubuntu@3.87.209.96'
+        Server2 = 'ubuntu@100.26.98.116'
+        Server3 = 'ubuntu@52.70.254.214'
         IMAGE_NAME = "akshayv1601/java_project"
     }
 
