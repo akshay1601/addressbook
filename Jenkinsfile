@@ -32,12 +32,11 @@ pipeline {
             //          }
             //     }
             // }
-            steps {
-                 withCredentials([usernamePassword(credentialsId: 'sshtoserver', passwordVariable: 'password', usernameVariable: 'username')]) {
-                    sh '''
-                        sshpass -p "$username" ssh -o StrictHostKeyChecking=no $usernam@$Server1 "scp -r server1-config.sh ${Server1}:/home/ubuntu
-                        sshpass -p "$username" ssh -o StrictHostKeyChecking=no $usernam@$Server1 "bash -s" < ~/server1-config.sh
-                    '''
+                steps {
+                    withCredentials([usernamePassword(credentialsId: 'sshtoserver', passwordVariable: 'password', usernameVariable: 'username')]) {
+                         sh '''
+                             sshpass -p "$username" ssh -o StrictHostKeyChecking=no $usernam@$Server1 "bash -s" < ~/server1-config.sh
+                     '''
                 }
             }
 
