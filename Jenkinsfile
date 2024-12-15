@@ -35,7 +35,8 @@ pipeline {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'sshtoserver', passwordVariable: 'password', usernameVariable: 'username')]) {
                          sh '''
-                             sshpass -p "$username" ssh -o StrictHostKeyChecking=no $usernam@$Server1 "bash -s" < ~/server1-config.sh
+                             sshpass -p "$password " scp -o StrictHostKeyChecking=no server1-config.sh ${Server1}:/home/ubuntu"
+                             sshpass -p "$password " ssh -o StrictHostKeyChecking=no ${Server1} 'bash ~/server1-config.sh'"
                      '''
                 }
             }
