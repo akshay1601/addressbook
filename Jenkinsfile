@@ -1,10 +1,10 @@
 pipeline {
     agent none
 
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        git  "gitpath"
-    }
+    // tools {
+    //     // Install the Maven version configured as "M3" and add it to the path.
+    //     git  "gitpath"
+    // }
     parameters {
         string(name: 'Env', defaultValue: 'Test', description: 'Version to deploy')
 
@@ -15,9 +15,9 @@ pipeline {
     }
 
     environment {
-        Server1 = 'ubuntu@18.232.174.100'
-        Server2 = 'ubuntu@54.236.193.4'
-        Server3 = 'ubuntu@3.87.96.89'
+        Server1 = 'ubuntu@3.92.4.46'
+        Server2 = 'ubuntu@54.204.92.248'
+        Server3 = 'ubuntu@54.226.83.38'
         IMAGE_NAME = "akshayv1601/java_project"
     }
 
