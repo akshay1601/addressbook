@@ -24,12 +24,20 @@ pipeline {
     stages {
         stage('Compile') {
             agent any
+            // steps {
+            //     script{
+            //         sshagent (credentials: ['Slave']) {
+            //             sh "scp -o StrictHostKeyChecking=no server1-config.sh ${Server1}:/home/ubuntu"
+            //             sh "ssh -o StrictHostKeyChecking=no ${Server1} 'bash ~/server1-config.sh'"
+            //          }
+            //     }
+            // }
             steps {
-                script{
-                    sshagent (credentials: ['Slave']) {
-                        sh "scp -o StrictHostKeyChecking=no server1-config.sh ${Server1}:/home/ubuntu"
-                        sh "ssh -o StrictHostKeyChecking=no ${Server1} 'bash ~/server1-config.sh'"
-                     }
+                 withCredentials([usernamePassword(credentialsId: 'sshtoserver', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    sh '''
+                        sshpass -p "$username" ssh -o StrictHostKeyChecking=no $usernam@$Server1 "scp -r server1-config.sh ${Server1}:/home/ubuntu
+                        sshpass -p "$username" ssh -o StrictHostKeyChecking=no $usernam@$Server1 "bash -s" < ~/server1-config.sh
+                    '''
                 }
             }
 
