@@ -17,27 +17,19 @@ pipeline {
     environment {
         Server1 = 'ubuntu@3.92.4.46'
         Server2 = 'ubuntu@54.204.92.248'
-        Server3 = 'ubuntu@54.226.83.38'
+        Server3 = 'ubuntu@3.87.96.89'
         IMAGE_NAME = "akshayv1601/java_project"
     }
 
     stages {
         stage('Compile') {
             agent any
-            // steps {
-            //     script{
-            //         sshagent (credentials: ['Slave']) {
-            //             sh "scp -o StrictHostKeyChecking=no server1-config.sh ${Server1}:/home/ubuntu"
-            //             sh "ssh -o StrictHostKeyChecking=no ${Server1} 'bash ~/server1-config.sh'"
-            //          }
-            //     }
-            // }
-                steps {
-                    withCredentials([usernamePassword(credentialsId: 'sshtoserver', passwordVariable: 'password', usernameVariable: 'username')]) {
-                         sh '''
-                             sshpass -p "$password " scp -o StrictHostKeyChecking=no server1-config.sh ${Server1}:/home/ubuntu"
-                             sshpass -p "$password " ssh -o StrictHostKeyChecking=no ${Server1} 'bash ~/server1-config.sh'"
-                     '''
+            steps {
+                script{
+                    sshagent (credentials: ['Slave']) {
+                        sh "scp -o StrictHostKeyChecking=no server1-config.sh ${Server1}:/home/ubuntu"
+                        sh "ssh -o StrictHostKeyChecking=no ${Server1} 'bash ~/server1-config.sh'"
+                     }
                 }
             }
 
