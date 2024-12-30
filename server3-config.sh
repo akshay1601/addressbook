@@ -31,7 +31,7 @@ echo \
 sudo apt-get update -y 
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-
+sudo chmod 777 /var/run/docker.sock
 # /opt/apache-maven-3.9.9/bin/mvn  package
 cd  /home/ubuntu/addressbook
 docker build -t $1:$2 .
