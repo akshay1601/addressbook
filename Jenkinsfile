@@ -5,8 +5,6 @@ pipeline {
     //     // Install the Maven version configured as "M3" and add it to the path.
     //     git  "gitpath"
     // }
-    ansiblePlaybook(credentialsId: 'private_key', inventory: 'inventories/a/hosts', playbook: 'my_playbook.yml')
-
     parameters {
         string(name: 'Env', defaultValue: 'Test', description: 'Version to deploy')
 
