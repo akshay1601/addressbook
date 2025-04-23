@@ -25,6 +25,7 @@ pipeline {
             agent any
             steps {
                 ansiblePlaybook(playbook: 'playbook.yml')
+                ansiblePlaybook credentialsId: 'Slave', playbook: 'playbook.yml'
 
             }
 
