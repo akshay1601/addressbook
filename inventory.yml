@@ -1,0 +1,20 @@
+all:
+  children:
+    web_server:
+      hosts:
+        node1:
+          ansible_hostname: node1
+      vars:
+        banner: Welcome to server host
+        user: ['akshay', 'shruti', 'user1']
+    db:
+      hosts:
+        node2:
+          ansible_hostname: node2
+      vars:
+        banner: Welcome to DB hosts
+        user:
+          - akshay
+          - shruti
+          - user1
+          - ansible
