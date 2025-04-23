@@ -24,7 +24,7 @@ pipeline {
         stage('Ansible') {
             agent any
             steps {
-                ansiblePlaybook(inventory: 'hosts', playbook: 'playbook.yml')
+                ansiblePlaybook(playbook: 'playbook.yml')
 
             }
 
