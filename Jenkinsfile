@@ -20,7 +20,7 @@ pipeline {
         Server3 = 'ubuntu@44.220.151.183'
         IMAGE_NAME = "akshayv1601/java_project"
     }
-
+    stages {
         stage('Ansible') {
             agent any
             steps {
@@ -29,7 +29,7 @@ pipeline {
             }
 
         }
-
+    }
 
     // stages {
     //     stage('Compile') {
