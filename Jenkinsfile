@@ -24,7 +24,7 @@ pipeline {
         stage('Ansible') {
             agent any
             steps {
-                ansiblePlaybook(credentialsId: 'private_key', inventory: 'hosts', playbook: 'playbook.yml')
+                ansiblePlaybook(credentialsId: 'Slave', inventory: 'hosts', playbook: 'playbook.yml')
 
             }
 
