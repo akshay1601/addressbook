@@ -21,19 +21,17 @@ pipeline {
         IMAGE_NAME = "akshayv1601/java_project"
     }
     stages {
-        stages {
-            stage('Run Ansible Playbook') {
-                steps {
-                    ansible(
-                        ansibleInstallation: 'default', // or the name of your Ansible installation
-                        inventoryFile: 'inventory.yml', // Path to your Ansible inventory
-                        playbookFile: 'playbook.yml', // Path to your Ansible playbook
-                        ansibleCredentials: 'Slave', // ID of your SSH credential
-                        verbose: true, // Set to true for verbose output
+        stage('Run Ansible Playbook') {
+            steps {
+                ansible(
+                    ansibleInstallation: 'default', // or the name of your Ansible installation
+                    inventoryFile: 'inventory.yml', // Path to your Ansible inventory
+                    playbookFile: 'playbook.yml', // Path to your Ansible playbook
+                    ansibleCredentials: 'Slave', // ID of your SSH credential
+                    verbose: true, // Set to true for verbose output
                     )
                 }
             }
-        }
     }
 
     // stages {
