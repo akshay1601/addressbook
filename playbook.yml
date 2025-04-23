@@ -1,3 +1,3 @@
-- hosts: 44.220.151.183
+- hosts: node1
   tasks:
     - debug: msg="{{ lookup('env','BUILD_TAG') }}"
